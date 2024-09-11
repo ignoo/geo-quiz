@@ -1,0 +1,93 @@
+
+    .worldMap {
+        // margin-top: 6vh;
+        background-color: #04020f;
+        height: 300vh;
+        width: auto;
+
+        .selected {
+            fill: #fafafa;
+
+            * {
+                fill: #fafafa;
+            }
+
+            &:hover {
+                fill: firebrick;
+
+                * {
+                    fill: firebrick;
+                }
+            }
+        }
+
+        .guessed {
+            fill: green;
+
+            * {
+                fill: green;
+            }
+        }
+
+        .small:hover {
+            filter: url(#shadow);
+
+            * {
+                filter: url(#shadow);
+            }
+        }
+
+        .xsmall {
+            // -webkit-transform-origin: center;
+            transform-origin: center;
+            transform-box: fill-box;
+
+            &:hover {
+                // -webkit-transform: scale(3);
+                // -webkit-transform-origin: center;
+                // -webkit-transition: 1s;
+                transform: scale(3);
+                transform-origin: center;
+                transition: 0.7s;
+            }
+        }
+    }
+
+    // menuBar colors and flashing:
+
+    @keyframes greenFlash {
+        0%   {background-color: #f1f1f1;}
+        100% {background-color: green;}
+    }
+
+    @keyframes redFlash {
+        0%   {background-color: #f1f1f1;}
+        100% {background-color: firebrick;}
+    }
+
+    .green {
+        animation: greenFlash 0.2s ease-out 2 alternate;
+    }
+    .red {
+        animation: redFlash 0.2s ease-out 2 alternate;
+    }
+    
+
+
+
+    .sun {
+        // position: absolute
+        z-index: 8;
+        top: 75vh;
+        left: 50%;
+        width: 140%;
+        transform: translateX(-50%);
+
+        @media only screen and (max-width: 576px) {
+            width: 300%;
+        }
+
+        @media only screen and (max-width: 992px) {
+            width: 220%;
+        }
+    }

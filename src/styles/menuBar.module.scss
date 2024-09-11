@@ -1,0 +1,35 @@
+.green {
+    background-color: aqua;
+}
+.bar {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    width: 100vw;
+    background-color: #f1f1f1;
+    box-shadow: 0px 0px 8px black;
+
+
+    .countryName {
+        font-family: 'Calistoga';
+        font-size: 2rem;
+    }
+
+    .infoCont {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        padding-right: 30px;
+
+        .info {
+            font-family: 'Azeret Mono';
+            font-size: 1.3rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }  
+    }
+}

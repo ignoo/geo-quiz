@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Calistoga&display=swap');
+
+html {
+	box-sizing: border-box;
+	font-size: 16px;
+	overflow: auto;
+	-ms-overflow-style: none;
+	/* for Internet Explorer, Edge */
+	scrollbar-width: none;
+
+	/* for Firefox */
+	&::-webkit-scrollbar {
+		display: none;
+	}
+  }
+  
+  *, *:before, *:after {
+	box-sizing: inherit;
+  }
+  
+  body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+  }
+  
+  ol, ul {
+	list-style: none;
+  }
+  
+  img {
+	max-width: 100%;
+	height: auto;
+  }
+
+
+  .btn {
+	align-items: center;
+	background-color: #FCFCFD;
+	border-radius: 4px;
+	border-width: 0;
+	box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+	color: #36395A;
+	cursor: pointer;
+	font-family: monospace;
+	height: 30px;
+	padding-left: 16px;
+	padding-right: 16px;
+	transition: box-shadow .15s, transform .15s;
+	white-space: nowrap;
+	font-size: 1.2rem;
+	&:hover {
+		box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+		transform: translateY(-2px);
+	}
+	&:active {
+		box-shadow: #D6D6E7 0 3px 7px inset;
+		transform: translateY(2px);
+	}
+}
+
+
+#va {
+	transform-origin: 45% 55%;
+	&:hover {
+		transform: scale(5);
+		transform-origin: 45% 55%;
+		transition: 0.4s;
+	}
+}
+
+#mc {
+	transform-origin: 70% 55%;
+	&:hover {
+		transform: scale(5);
+		transform-origin: 70% 55%;
+		transition: 0.4s;
+	}
+}
+
+
+
