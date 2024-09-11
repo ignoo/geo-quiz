@@ -60,19 +60,6 @@
         }
     }
 
-
-
-
-
-
-    .bbz2 {
-        position: absolute;
-        top: 180px;
-        height: 30px;
-        width: 100vw;
-        background-color: #c70b0b;
-    }
-
     .globeContainer {
         position: absolute;
         top: 10%;
@@ -85,20 +72,6 @@
             width: auto;
             height: 60vh;
             animation: spin 400s linear 0s infinite normal;
-
-
-
-
-            .bbz {
-                position: absolute;
-                left: -50px;
-                z-index: 20;
-                height: 300px;
-                width: 300px;
-                border-radius: 50%;
-                background-color: rgb(255, 255, 255);
-                // background-clip: text;
-            }
         }
 
     }
@@ -127,6 +100,7 @@
             font-size: 3rem;
             border-radius: 10px;
             animation: wobble 1s ease-in-out 0s infinite alternate;
+            cursor: pointer;
 
             &:hover {
                 animation-iteration-count: 0;

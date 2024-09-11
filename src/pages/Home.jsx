@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Star from '../assets/star.svg'
 import Globe from '../assets/globe.svg'
 import Sun from '../assets/sun.svg'
