@@ -2,6 +2,7 @@
   "name": "geo-game",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://ignoo.github.io/geo-quiz",
   "type": "module",
   "scripts": {
     "dev": "vite",
