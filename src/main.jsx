@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/geo-quiz/find-countries',
+    path: '/find-countries',
     element: <FindCountries />,
   },
 ]);
