@@ -7,11 +7,11 @@ import FindCountries from './pages/games/FindCountries';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/geo-quiz',
     element: <Home />,
   },
   {
-    path: '/find-countries',
+    path: '/geo-quiz/find-countries',
     element: <FindCountries />,
   },
 ]);
