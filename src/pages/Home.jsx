@@ -1,10 +1,11 @@
-import { useNavigate } from 'react-router-dom'
-import Star from '../assets/star.svg'
-import Globe from '../assets/globe.svg'
-import Sun from '../assets/sun.svg'
-import Ufo from '../assets/ufo.svg'
-import styles from '../styles/home.module.scss'
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import Star from '../assets/star.svg';
+import Globe from '../assets/globe.svg';
+import Sun from '../assets/sun.svg';
+import Ufo from '../assets/ufo.svg';
+import styles from '../styles/home.module.scss';
+import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default function Home() {
 
@@ -25,6 +26,12 @@ export default function Home() {
 
     return (
         <>
+            <Helmet>
+                <meta property="og:title" content="Geo Quiz" />
+                <meta property="og:description" content="Test your geography knowledge. Locate every country in the world in this map quiz." />
+                <meta property="og:url" content="https://www.ignoo.github/geo-quiz" />
+                <meta property="og:image" content="https://ignoo.github.io/geo-quiz/favicon.ico" />
+            </Helmet>
             <div className={styles.background}>
 
                 <div className={styles.globeContainer}><Globe className={styles.globe}/></div>

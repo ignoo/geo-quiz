@@ -1,4 +1,4 @@
-
+@use "../styles/mixin.scss" as mixin;
 
 @keyframes pulse {
     from {
@@ -115,11 +115,12 @@
 
     .ufoContainer {
         position: absolute;
-        z-index: 5;
+        z-index: 20;
         animation: float 1.4s ease-in-out 0s infinite alternate;
-        left: 88%;
+        left: 90%;
         .ufo {
-            height: 10vw;
+            position: relative;
+            height: 6vh;
             animation: wobble 0.5s ease-in-out 0s infinite alternate;
         }
     }
@@ -131,12 +132,13 @@
         left: 50%;
         width: 140%;
         transform: translateX(-50%);
-        @media only screen and (max-width: 576px) {
-            width: 300%;
+        @include mixin.mobile {
+            width: 300%
         }
-        @media only screen and (max-width: 992px) {
+        @include mixin.desktop {
             width: 220%;
         }
+        
         .sun {
             animation: spin 400s linear 0s infinite normal;
         }

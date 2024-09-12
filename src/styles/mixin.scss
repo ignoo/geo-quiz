@@ -21,25 +21,3 @@
         @content;
     }
 }
-
-@mixin media($keys...) {
-    @each $key in $keys {
-        @if ($key ==phone) {
-            @include phone {
-                @content;
-            }
-        }
-
-        @else if ($key ==tablet) {
-            @include tablet {
-                @content;
-            }
-        }
-
-        @else if ($key ==desktop) {
-            @include desktop {
-                @content;
-            }
-        }
-    }
-}
