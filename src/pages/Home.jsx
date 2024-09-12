@@ -29,7 +29,8 @@ export default function Home() {
             <Helmet>
                 <meta property="og:title" content="Geo Quiz" />
                 <meta property="og:description" content="Test your geography knowledge. Locate every country in the world in this map quiz." />
-                <meta property="og:url" content="https://www.ignoo.github/geo-quiz" />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://ignoo.github/geo-quiz" />
                 <meta property="og:image" content="https://ignoo.github.io/geo-quiz/favicon.ico" />
             </Helmet>
             <div className={styles.background}>
