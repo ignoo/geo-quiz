@@ -41,7 +41,6 @@ export default function MenuBar({ menuBarColor, playGame, country, score, setEnd
       <h1 className={styles.countryName}>{country}</h1>
       <div className={styles.infoCont}>
         <div className={styles.info}>
-          {/* <div className={styles.timePassed}>{`${minutesPassed.toString().padStart(2, '0')}:${secondsPassed.toString().padStart(2, '0')}`}</div> */}
           <div className={styles.timePassed}>{timeFormatter(minutesPassed, secondsPassed)}</div>
           <div className={styles.guessed}>{score}</div>
         </div>

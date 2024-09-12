@@ -1,3 +1,5 @@
+@use "../styles/mixin.scss" as mixin;
+
 .green {
     background-color: aqua;
 }
@@ -15,6 +17,9 @@
     .countryName {
         font-family: 'Calistoga';
         font-size: 2rem;
+        @include mixin.mobile {
+            font-size: 1.8rem;
+        }
     }
 
     .infoCont {
@@ -22,6 +27,10 @@
         justify-content: space-between;
         gap: 40px;
         padding-right: 30px;
+        @include mixin.mobile {
+            padding-right: 10px;
+            gap: 20px;
+        }
 
         .info {
             font-family: 'Azeret Mono';
@@ -30,6 +39,11 @@
             display: flex;
             align-items: center;
             gap: 20px;
+            @include mixin.mobile {
+                flex-direction: column;
+                font-size: 1rem;
+                gap: 0;
+            }
         }  
     }
 }
