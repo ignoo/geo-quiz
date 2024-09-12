@@ -1,4 +1,3 @@
-
 @mixin desktop {
     @media only screen and (max-width: 992px) {
         @content;
@@ -14,5 +13,33 @@
 @mixin mobile {
     @media only screen and (max-width: 568px) {
         @content;
+    }
+}
+
+@mixin mobileLandscape {
+    @media screen and (orientation:landscape) and (max-height: 568px) {
+        @content;
+    }
+}
+
+@mixin media($keys...) {
+    @each $key in $keys {
+        @if ($key ==phone) {
+            @include phone {
+                @content;
+            }
+        }
+
+        @else if ($key ==tablet) {
+            @include tablet {
+                @content;
+            }
+        }
+
+        @else if ($key ==desktop) {
+            @include desktop {
+                @content;
+            }
+        }
     }
 }
