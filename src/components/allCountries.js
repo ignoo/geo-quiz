@@ -1,5 +1,5 @@
 export const allCountries = [
-    { code: "af", name: "Afghnistan" },
+    { code: "af", name: "Afghanistan" },
     { code: "al", name: "Albania" },
     { code: "dz", name: "Algeria" },
     { code: "ad", name: "Andorra" },

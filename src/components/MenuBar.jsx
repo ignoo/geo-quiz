@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/menuBar.module.scss';
 
-export default function MenuBar({ menuBarColor, playGame, country, score, setEndingTime, setModalOpen, setMenuBarOpen }) {
+export default function MenuBar({ menuBarColor, playGame, setPlayGame, country, score, setEndingTime }) {
 
   const [minutesPassed, setMinutesPassed] = useState(0);
   const [secondsPassed, setSecondsPassed] = useState(0);
@@ -11,9 +11,8 @@ export default function MenuBar({ menuBarColor, playGame, country, score, setEnd
   };
 
   const onStop = _ => {
-    setEndingTime(timeFormatter(minutesPassed, secondsPassed));
-    setModalOpen(true);
-    setMenuBarOpen(false);
+    setEndingTime(minutesPassed*60 + secondsPassed);
+    setPlayGame(false);
   }
 
   //stopwatch:
@@ -33,6 +32,7 @@ export default function MenuBar({ menuBarColor, playGame, country, score, setEnd
     }
     return () => clearInterval(interval);
   }, [secondsPassed, minutesPassed, playGame]); 
+
 
   return (
 

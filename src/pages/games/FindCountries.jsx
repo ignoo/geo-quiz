@@ -5,6 +5,7 @@ import MenuBar from '../../components/MenuBar'
 import { useEffect, useState } from 'react'
 import { allCountries } from '../../components/allCountries'
 import Modal from '../../components/Modal'
+import Highscore from '../../components/Highscore'
 
 export default function FindCountries() {
 
@@ -17,21 +18,19 @@ export default function FindCountries() {
   const [wasDragging, setWasDragging] = useState(false);
   const [mouseDown, setMouseDown] = useState(false);
 
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const [menuBarOpen, setMenuBarOpen] = useState(true);
   const [menuBarColor, setMenuBarColor] = useState('');
-  const [endingTime, setEndingTime] = useState('');
+  const [endingTime, setEndingTime] = useState(0);
+
+  const [lowScore, setLowScore] = useState(false);
 
   const restart = _ => {
-    setEndingTime('');
+    setEndingTime(0);
     setCountriesLeft([...allCountries]);
     setCountriesGuessed([]);
-    setModalOpen(false);
-    setMenuBarOpen(true);
+    setLowScore(false);
     setPlayGame(true);
   }
-  
+
   // to stop registering a click when mouse click is used for scrolling:
   const checkMouseDown = _ => {
     !mouseDown ? setMouseDown(true) : null;
@@ -45,7 +44,7 @@ export default function FindCountries() {
 
   const getNewCountry = _ => {
     const randomIndex = Math.floor(Math.random() * countriesLeft.length);
-    setCurrentCountry({code: countriesLeft[randomIndex].code, name: countriesLeft[randomIndex].name});
+    setCurrentCountry({ code: countriesLeft[randomIndex].code, name: countriesLeft[randomIndex].name });
   };
 
   useEffect(() => {
@@ -58,7 +57,7 @@ export default function FindCountries() {
 
   const handleClick = (e) => {
     if (wasDragging) {
-      setWasDragging(false) 
+      setWasDragging(false)
     } else {
       let parent = e.target.parentNode;
       let selectedId;
@@ -91,29 +90,28 @@ export default function FindCountries() {
 
         //removing used country from countriesLeft array:
         setCountriesLeft(prevCountriesLeft => prevCountriesLeft.filter(item => item.code !== currentCountry.code));
-      } 
+      }
     }
-
   };
 
   return (
-    
+
     <div style={{
       // height: "300vh",
       // width: "auto",
       // overflow: "auto",
-      }}>
-      {modalOpen && (
+    }}>
+      {!playGame && (
         <Modal>
           <h1>DONE!</h1>
-          <h2>You got {`${countriesGuessed.length}/${allCountries.length}`} countries right in {endingTime}.</h2>
+          <Highscore playGame={playGame} score={countriesGuessed.length} allCountries={allCountries.length} endingTime={endingTime} lowScore={lowScore} setLowScore={setLowScore} />
           <button className="btn" onClick={restart}>TRY AGAIN</button>
         </Modal>
       )}
-      {!modalOpen && <DragToScroll/>}
-      {menuBarOpen && <MenuBar menuBarColor={menuBarColor} playGame={playGame} country={currentCountry.name} score={`${countriesGuessed.length}/${allCountries.length}`} setEndingTime={setEndingTime} setModalOpen={setModalOpen} setMenuBarOpen={setMenuBarOpen} />}
+      {playGame && <DragToScroll />}
+      {playGame && <MenuBar menuBarColor={menuBarColor} playGame={playGame} setPlayGame={setPlayGame} country={currentCountry.name} score={`${countriesGuessed.length}/${allCountries.length}`} setEndingTime={setEndingTime} />}
       <WorldMap styles={styles} onElementClick={handleClick} checkMouseDown={checkMouseDown} checkMouseUp={checkMouseUp} checkDragging={checkDragging} countriesGuessed={countriesGuessed} />
     </div>
-  
+
   )
 }
