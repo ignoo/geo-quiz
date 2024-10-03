@@ -1,23 +1,33 @@
+@keyframes slide {
+    from {
+        top: 100%;
+    }
+
+    to {
+        top: 0;
+    }
+}
+
 .overlay {
     position: fixed;
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(109, 58, 0, 0.3);
     backdrop-filter: blur(8px);
     align-items: center;
     justify-content: center;
     z-index: 5;
     .modal {
+        position: relative;
         font-family: Calistoga;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
-        background-color: rgba(241, 241, 241, 0.8);
+        background-color: rgba(241, 241, 241, 0);
         border: 0;
         border-radius: 10px;
-        padding: 20px 0 20px 0;
         z-index: 6;
+        animation: slide 1s cubic-bezier(.62,1.44,.58,1.6);
     }
 }

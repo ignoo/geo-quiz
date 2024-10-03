@@ -1,32 +1,66 @@
+@keyframes scale {
+    0% {
+        // transform: scaleY(0);
+        // max-height: 0%;
+        gap: -10px;
+    }
+
+    65% {
+        // transform: scale(1);
+        // max-height: 100%;
+        gap: 40px;
+    }
+    85% {
+        gap: 4px;
+    }
+    100% {
+        gap: 8px;
+    }
+}
+
+
+
 .table {
     border-collapse: collapse;
-    // padding-top: 1rem;
 
     .header {
         font-size: 1.6rem;
         padding-bottom: 0.8rem;
+        background-color: rgba(223, 217, 237, 0.8);
     }
 
-    tr {
-        &:hover {
-            background-color: rgb(241, 241, 241);
-        }
-        &:not(:last-child) {
-            border-bottom: 1px solid black;
-            
-        }
-        td {
-            padding: 0.3rem;
-            text-align: center;
-            &:last-child {
-                padding-right: 3rem;
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        // transform: scaleY(0);
+        // max-height: 100%;
+        animation: scale 1.2s ease-in-out;
+        tr {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgba(223, 217, 237, 0.8);
+
+            &:hover {
+                background-color: rgb(241, 241, 241);
             }
-            &:first-child {
-                padding-left: 3rem;
+
+            td {
+                padding: 0.3rem;
+                text-align: center;
+
+                &:last-child {
+                    padding-right: 3rem;
+                }
+
+                &:first-child {
+                    padding-left: 3rem;
+                }
             }
         }
     }
-    
+
+
 
     .oldScores {
         font-size: 1.2rem;

@@ -70,7 +70,6 @@ const WorldMap = ({ styles, onElementClick, checkMouseDown, checkMouseUp, checkD
         position: 'relative',
         transform: `translate(${position.x}px, ${position.y}px)`,
         zIndex: '1',
-        // transitionDuration: '60ms'
         transition: 'transform 100ms ease-in-out, height 100ms ease-in-out'
       }}
       className={styles.worldMap}

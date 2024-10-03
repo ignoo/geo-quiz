@@ -80,13 +80,12 @@
         position: absolute;
         top: 26%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: scale(1) translateX(-50%);
         
         &:hover {
-            transform: scale(1.4);
-            transform-origin: center;
-            left: 45%;
-            transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+            transform: scale(1.4) translateX(-50%);
+            transform-origin: left top;
+            transition: 0.1s linear;
         }
 
         .startBtn {
@@ -118,20 +117,36 @@
         z-index: 5;
         animation: float 1.4s ease-in-out 0s infinite alternate;
         left: 90%;
+        @include mixin.tablet {
+            left: 75%;
+        }
+        @include mixin.mobile {
+            left: 80%;
+            top: -5%;
+        }
 
         .ufo {
             position: relative;
-            height: 10vh;
+            height: 12vh;
             animation: wobble 0.5s ease-in-out 0s infinite alternate;
+            @include mixin.tablet {
+                height: 14vh;
+            }
+            @include mixin.mobile {
+                height: 19vh;
+            }
         }
 
         .langsContainer {
             font-family: Calistoga;
             position: relative;
-            top: -20px;
+            top: -3vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            @include mixin.mobile {
+                top: -7vh;
+            }
 
             .flag {
                 height: 1rem;
@@ -143,10 +158,14 @@
                 box-shadow: #d2d1ac 0 -3px 0 inset;
                 font-size: 1rem;
                 border-radius: 40% 40% 0 0;
-                width: 60%;
+                width: 50%;
                 display: flex;
                 justify-content: center;
+                align-items: center;
                 gap: 4px;
+                @include mixin.mobile {
+                    width: 60%;
+                }
             }
             .list {
                 transition: transform 0.3s ease, opacity 0.3s ease;
@@ -156,11 +175,15 @@
                 color: #36395A;
                 font-size: 1rem;
                 border-radius: 0 0 4px 4px;
-                width: 60%;
+                width: 50%;
+                @include mixin.mobile {
+                    width: 60%;
+                }
 
                 .lng {
                     display: flex;
                     justify-content: center;
+                    align-items: center;
                     gap: 4px;
                     &:hover {
                         background-color: #d2d1ac;

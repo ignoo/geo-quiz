@@ -55,7 +55,7 @@ export default function Highscores({ playGame, score, allCountries, endingTime, 
 
         <table className={styles.table}>
             <caption className={styles.header}>{t('bestResults')}</caption>
-            <tbody>
+            <tbody className={styles.body}>
                 {highscores?.map((row, i) => (
 
                     row.new ? (

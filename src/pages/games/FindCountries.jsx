@@ -3,12 +3,13 @@ import styles from '../../styles/findWorldCountry.module.scss'
 import DragToScroll from '../../components/DragToScroll'
 import MenuBar from '../../components/MenuBar'
 import { useEffect, useState } from 'react'
-import { allCountriesEN } from '../../components/allCountriesEN'
-import { allCountriesLT } from '../../components/allCountriesLT'
-import { allCountriesRU } from '../../components/allCountriesRU'
+import { allCountriesEN } from '../../components/countryLists/allCountriesEN'
+import { allCountriesLT } from '../../components/countryLists/allCountriesLT'
+import { allCountriesRU } from '../../components/countryLists/allCountriesRU'
 import Modal from '../../components/Modal'
 import Highscore from '../../components/Highscore'
 import { useTranslation } from 'react-i18next'
+import { Draggable } from '../../components/Draggable'
 
 export default function FindCountries() {
 
@@ -18,7 +19,6 @@ export default function FindCountries() {
 
   const storedLanguage = localStorage.getItem('language') || 'EN';
   const allCountries = storedLanguage === 'EN' ? allCountriesEN : storedLanguage === 'LT' ? allCountriesLT : allCountriesRU;
-  console.log(allCountries);
   const [countriesLeft, setCountriesLeft] = useState([...allCountries]);
   const [currentCountry, setCurrentCountry] = useState({});
   const [countriesGuessed, setCountriesGuessed] = useState([]);
@@ -30,7 +30,7 @@ export default function FindCountries() {
   const [endingTime, setEndingTime] = useState(0);
 
   const [lowScore, setLowScore] = useState(false);
-  
+
 
   const restart = _ => {
     setEndingTime(0);
@@ -114,14 +114,24 @@ export default function FindCountries() {
     }}>
       {!playGame && (
         <Modal>
-          <h1>{t('done')}</h1>
+          <div className={styles.upperCont}>
+            <h1>{t('done')}</h1>
+          </div>
           <Highscore playGame={playGame} score={countriesGuessed.length} allCountries={allCountries.length} endingTime={endingTime} lowScore={lowScore} setLowScore={setLowScore} />
-          <button className="btn" onClick={restart}>{t('tryAgain')}</button>
+          <div className={styles.lowerCont}>
+            <button className="btn" onClick={restart}>{t('tryAgain')}</button>
+          </div>
+
         </Modal>
       )}
       {/* {playGame && <DragToScroll />} */}
       {playGame && <MenuBar menuBarColor={menuBarColor} playGame={playGame} setPlayGame={setPlayGame} country={currentCountry.name} score={`${countriesGuessed.length}/${allCountries.length}`} setEndingTime={setEndingTime} />}
-      <WorldMap styles={styles} onElementClick={handleClick} checkMouseDown={checkMouseDown} checkMouseUp={checkMouseUp} checkDragging={checkDragging} countriesGuessed={countriesGuessed} />
+      <Draggable
+        initialPos={{ x: 0, y: 0 }}
+        fixOnAxis='none'
+      >
+        <WorldMap styles={styles} onElementClick={handleClick} checkMouseDown={checkMouseDown} checkMouseUp={checkMouseUp} checkDragging={checkDragging} countriesGuessed={countriesGuessed} />
+      </Draggable>
     </div>
 
   )
