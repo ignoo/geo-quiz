@@ -7,15 +7,17 @@
     backdrop-filter: blur(8px);
     align-items: center;
     justify-content: center;
+    z-index: 5;
     .modal {
         font-family: Calistoga;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 20px;
-        background-color: rgba(241, 241, 241, 0.9);
+        background-color: rgba(241, 241, 241, 0.8);
         border: 0;
         border-radius: 10px;
-        padding: 20px;
+        padding: 20px 0 20px 0;
+        z-index: 6;
     }
 }

@@ -1,9 +1,59 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const WorldMap = ({ styles, onElementClick, checkMouseDown, checkMouseUp, checkDragging, countriesGuessed }) => {
 
+  const mapRef = useRef(null);
+  const [height, setHeight] = useState(100);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const lastEventRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseWheel = (e) => {
+      e.preventDefault(); // Prevent default scroll behavior
+
+      if (lastEventRef.current && e.timeStamp - lastEventRef.current < 200) return;
+      lastEventRef.current = e.timeStamp;
+
+      const { clientX, clientY } = e; // Get the mouse cursor position
+      const mapRect = mapRef.current.getBoundingClientRect();
+
+      // Mouse position relative to the SVG map
+      const mapX = clientX - mapRect.left;
+      const mapY = clientY - mapRect.top;
+
+      // Determine zoom direction and factor
+      const heightChange = e.deltaY < 0 ? 1.5 : 0.5;
+
+      setHeight((prevHeight) => {
+        const newHeight = Math.max(100, prevHeight * heightChange); // Maintain min height of 100vh
+
+        // Calculate the height ratio
+        const heightRatio = newHeight / prevHeight;
+
+        // Correctly calculate the new position to zoom toward the cursor
+        const newX = position.x - mapX * (heightRatio - 1);
+        const newY = position.y - mapY * (heightRatio - 1);
+
+        // Update the position state with the calculated offsets
+        setPosition({
+          x: newX,
+          y: newY
+        });
+
+        return newHeight;
+      });
+    };
+
+    window.addEventListener('wheel', handleMouseWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener('wheel', handleMouseWheel);
+    };
+  }, [position]);
+
+
   const guessedCountriesSet = useMemo(
-    () => new Set(countriesGuessed.map(country => country.code)), 
+    () => new Set(countriesGuessed.map(country => country.code)),
     [countriesGuessed]
   );
 
@@ -13,7 +63,16 @@ const WorldMap = ({ styles, onElementClick, checkMouseDown, checkMouseUp, checkD
       viewBox="0 0 2754 1398"
       width="100%"
       height="100%"
-      // preserveAspectRatio=""
+      ref={mapRef}
+      style={{
+        height: `${height}vh`,
+        width: 'auto',
+        position: 'relative',
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        zIndex: '1',
+        // transitionDuration: '60ms'
+        transition: 'transform 100ms ease-in-out, height 100ms ease-in-out'
+      }}
       className={styles.worldMap}
       onClick={onElementClick}
       onMouseMove={checkDragging}

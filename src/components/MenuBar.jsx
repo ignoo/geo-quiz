@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/menuBar.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export default function MenuBar({ menuBarColor, playGame, setPlayGame, country, score, setEndingTime }) {
+
+  const { t } = useTranslation();
 
   const [minutesPassed, setMinutesPassed] = useState(0);
   const [secondsPassed, setSecondsPassed] = useState(0);
@@ -44,7 +47,7 @@ export default function MenuBar({ menuBarColor, playGame, setPlayGame, country, 
           <div className={styles.timePassed}>{timeFormatter(minutesPassed, secondsPassed)}</div>
           <div className={styles.guessed}>{score}</div>
         </div>
-        <button className="btn" onClick={onStop}>GIVE UP</button>
+        <button className="btn" onClick={onStop}>{t('giveUp')}</button>
       </div>     
     </header>
 

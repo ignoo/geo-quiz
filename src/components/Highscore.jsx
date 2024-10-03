@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import styles from '../styles/highscores.module.scss';
+import { useTranslation } from "react-i18next";
 
 export default function Highscores({ playGame, score, allCountries, endingTime, lowScore, setLowScore }) {
+
+    const { t } = useTranslation();
 
     const [highscores, setHighscores] = useState([]);
 
@@ -32,15 +35,12 @@ export default function Highscores({ playGame, score, allCountries, endingTime, 
 
             if (!isDuplicate) {
                 if (savedHighscores.length > 9 && (isScoreTooLow(result, savedHighscores) || isTimeTooSlow(result, savedHighscores))) {
-                    console.log('too low');
                     setLowScore(result);
                     setHighscores([...savedHighscores]);
                 } else {
                     if (savedHighscores.length > 9){
                         savedHighscores.pop();
-                        console.log('popped');
                     }
-                    console.log('after pop');
                     const updatedHighscores = savedHighscores ? [...savedHighscores, result] : [result];
                     updatedHighscores.sort((a, b) => b.score - a.score || a.time - b.time)
                     localStorage.setItem('highscore', JSON.stringify(updatedHighscores.map(({ new: _, ...withoutNew }) => withoutNew)));
@@ -54,13 +54,13 @@ export default function Highscores({ playGame, score, allCountries, endingTime, 
     return (
 
         <table className={styles.table}>
-            <caption className={styles.header}>Your best results</caption>
+            <caption className={styles.header}>{t('bestResults')}</caption>
             <tbody>
                 {highscores?.map((row, i) => (
 
                     row.new ? (
                         <tr className={styles.newHighScore} key={i}>
-                            <td>{i + 1}</td>
+                            <td>&uarr;</td>
                             <td>{row.date}</td>
                             <td>{row.score}/{allCountries}</td>
                             <td>{convertToTimeString(row.time)}</td>
@@ -77,7 +77,7 @@ export default function Highscores({ playGame, score, allCountries, endingTime, 
                 ))}
                 {lowScore && (
                     <tr className={styles.newLowScore}>
-                        <td></td>
+                        <td>&darr;</td>
                         <td>{lowScore.date}</td>
                         <td>{lowScore.score}/{allCountries}</td>
                         <td>{convertToTimeString(lowScore.time)}</td>
